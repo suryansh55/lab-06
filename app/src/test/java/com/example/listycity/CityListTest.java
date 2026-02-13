@@ -48,7 +48,7 @@ public class CityListTest {
         City city = new City("Edmonton", "Alberta");
         cityList.hasCity(city);
         assertEquals(0, cityList.getCities().size());
-        assertFalse(cityList.getCities().contains(city));
+        assertTrue(cityList.getCities().contains(city));
 
     }
 
@@ -60,5 +60,33 @@ public class CityListTest {
         assertThrows(IllegalArgumentException.class, () -> {
             cityList.hasCity(city);
         });
+    }
+
+    @Test
+    void testDeleteCity(){
+        CityList cityList = mockCityList();
+        assertEquals(1, cityList.getCities().size());
+        City city = new City("Edmonton", "Alberta");
+        cityList.delete(city);
+        assertEquals(0, cityList.getCities().size());
+        assertFalse(cityList.getCities().contains(city));
+
+    }
+
+    @Test
+    void testDeleteException() {
+        CityList cityList = mockCityList();
+        City city = new City("Calgary", "Alberta");
+        cityList.delete(city);
+        assertThrows(IllegalArgumentException.class, () -> {
+            cityList.delete(city);
+        });
+    }
+
+    @Test
+    void testCountCity(){
+        CityList cityList = mockCityList();
+        assertEquals(1, cityList.getCities().size());
+
     }
 }

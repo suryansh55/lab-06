@@ -27,13 +27,34 @@ public class CityList {
      * @param city
      *  This is a candidate city to check
      */
-    public  int hasCity(City city){
+    public boolean hasCity(City city){
+        if (cities.contains(city)){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    /**
+     * This function takes a city as an input and if it is present in the list , removes it.
+     * @param city
+     */
+    public void delete(City city){
         if (cities.contains(city)){
             cities.remove(city);
         }
         else {
             throw  new IllegalArgumentException();
         }
+    }
+
+    /**
+     * This function returns number of cities in the list
+     * @return
+     */
+    public int countCities(){
 
         return cities.toArray().length;
     }
